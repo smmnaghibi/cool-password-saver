@@ -15,14 +15,14 @@ def search():
         tv.delete(i)
     conn = connect("my_db.db")
     c = conn.cursor()
-    c.execute("SELECT * FROM PassList WHERE name = '{}'".format(show_entry.get()))
+    c.execute("SELECT * FROM PassList WHERE website = '{}'".format(show_entry.get()))
     for row in c.fetchall():
         tv.insert("", "end", values=row)
 
 def update():
     conn = connect("my_db.db")
     c = conn.cursor()
-    c.execute("UPDATE password SET PassList = '{}' WHERE website = '{}'".format(update_password_entry.get(),update_website_entry.get()))
+    c.execute("UPDATE PassList SET password = '{}' WHERE website = '{}'".format(update_password_entry.get(),update_website_entry.get()))
     conn.commit()
     conn.close()
     show()
@@ -45,15 +45,15 @@ def show():
     conn.close()
 
 root = Tk()
-root.geometry("370x450")
+root.geometry("403x450")
 root.title("Password Saver")
 Label(root, text="Cool Password Saver", font=('',18)).grid(row=0, column=0)
 
-cols = ["Website"]
+cols = ["Website", "Password"]
 tv = Treeview(root, columns=cols, show="headings")
 for col in cols:
     tv.heading(col, text=col)
-tv.grid(row=2, column=0, columnspan=1)
+tv.grid(row=2, column=0, columnspan=2)
 
 Label(root, text="Website : ").grid(row=3, column=0)
 website_entry = Entry(root)
