@@ -1,4 +1,5 @@
 from tkinter import *
+import os.path
 
 # def create_window():
 #     root = Tk()
@@ -13,7 +14,7 @@ def sign_in():
             file = open("log.txt","r")
             reader = file.read().split(",")
             if uname.get() == reader[0] and password.get() == reader[1]:
-                Toplevel(sign_in_up_window)
+                print("ok")
 
         except:
             print("log.txt was deleted or You didn't sign up")
@@ -30,8 +31,11 @@ def sign_in():
 
 def sign_up():
     def check():
-        file = open("log.txt","w")
-        file.write(uname.get()+","+password.get())
+        if not os.path.exists("log.txt"):
+            file = open("log.txt","w")
+            file.write(uname.get()+","+password.get())
+        else:
+            Tk().bell()
 
 
     sign_up_window = Tk()
