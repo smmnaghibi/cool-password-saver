@@ -12,7 +12,21 @@ def update():
     ...
 
 def show():
-    ...
+    for i in tv.get_children():
+        tv.delete(i)
+    conn = connect("my_db.db")
+    c = conn.cursor()
+    try:
+        c.execute("SELECT * FROM PassList")
+    except:
+        c.execute("CREATE TABLE PassList (website text, password test)")
+        conn.commit()
+        c.execute("SELECT * FROM PassList")
+
+    for row in c.fetchall():
+        tv.insert("", "end", values=row)
+
+    conn.close()
 
 root = Tk()
 root.geometry("370x450")
