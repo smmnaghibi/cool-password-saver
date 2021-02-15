@@ -1,6 +1,7 @@
 from tkinter import Label, Entry, Button, Tk
 from tkinter.ttk import Treeview
 from sqlite3 import connect
+from random import choice
 
 def save():
     conn = connect('my_db.db')
@@ -49,8 +50,21 @@ def show():
 
     conn.close()
 
+def generate():
+    pass_lst = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z',
+                'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z',
+                '0','1','2','3','4','5','6','7','8','9',
+                '@','#','-','_']
+    ran_pass = ''
+    for i in range(13):
+        ran_pass += choice(pass_lst)
+
+    random_pass.delete(0, 'end')
+    random_pass.insert(0, ran_pass)
+
+
 root = Tk()
-root.geometry("403x450")
+root.geometry("403x492")
 root.title("Password Saver")
 Label(root, text="Cool Password Saver", font=('',18)).grid(row=0, column=0)
 
@@ -85,6 +99,12 @@ update_password_entry = Entry(root)
 update_password_entry.grid(row=9, column=1)
 
 Button(root, text="             Update             ", command=update).grid(row=10, column=1)
+
+Label(root, text="Random Password : ").grid(row=11,column=0)
+random_pass = Entry(root)
+random_pass.grid(row=11, column=1)
+
+Button(root, text='            Generate            ', command=generate).grid(row=12, column=1)
 
 
 show()
