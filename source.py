@@ -6,7 +6,13 @@ def save():
     ...
 
 def search():
-    ...
+    for i in tv.get_children():
+        tv.delete(i)
+    conn = connect("my_db.db")
+    c = conn.cursor()
+    c.execute("SELECT * FROM PassList WHERE name = '{}'".format(show_entry.get()))
+    for row in c.fetchall():
+        tv.insert("", "end", values=row)
 
 def update():
     ...
