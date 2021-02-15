@@ -20,7 +20,12 @@ def search():
         tv.insert("", "end", values=row)
 
 def update():
-    ...
+    conn = connect("my_db.db")
+    c = conn.cursor()
+    c.execute("UPDATE password SET PassList = '{}' WHERE website = '{}'".format(update_password_entry.get(),update_website_entry.get()))
+    conn.commit()
+    conn.close()
+    show()
 
 def show():
     for i in tv.get_children():
