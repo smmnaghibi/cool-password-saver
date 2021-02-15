@@ -39,7 +39,8 @@ def sign_up():
             sign_up_window.destroy()
             main()
         else:
-            Tk().bell()
+            sign_up_window.destroy()
+            sign_window()
 
     sign_up_window = Tk()
     sign_up_window.title("Sign up")
@@ -161,15 +162,15 @@ def main():
     show()
     root.mainloop()
 
-
-sign_in_up_window = Tk()
-sign_in_up_window.title("Login")
-Label(sign_in_up_window).grid(row=0, column=0)
-Label(sign_in_up_window).grid(row=0, column=1)
-Button(sign_in_up_window, text="       Sing up       ",command=sign_up).grid(row=1, column=0)
-Button(sign_in_up_window, text="       Sing in       ",command=sign_in).grid(row=1, column=1)
-Label(sign_in_up_window).grid(row=2, column=0)
-Label(sign_in_up_window).grid(row=2, column=1)
-
-
-sign_in_up_window.mainloop()
+def sign_window():
+    global sign_in_up_window
+    sign_in_up_window = Tk()
+    sign_in_up_window.title("Login")
+    Label(sign_in_up_window).grid(row=0, column=0)
+    Label(sign_in_up_window).grid(row=0, column=1)
+    Button(sign_in_up_window, text="       Sing up       ",command=sign_up).grid(row=1, column=0)
+    Button(sign_in_up_window, text="       Sing in       ",command=sign_in).grid(row=1, column=1)
+    Label(sign_in_up_window).grid(row=2, column=0)
+    Label(sign_in_up_window).grid(row=2, column=1)
+    sign_in_up_window.mainloop()
+sign_window()
