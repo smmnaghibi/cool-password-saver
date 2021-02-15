@@ -9,7 +9,14 @@ from tkinter import *
 # Button(login, text="Create new window", command=create_window).grid(row=0, column=0)
 def sign_in():
     def check():
-        ...
+        try:
+            file = open("log.txt","r")
+            reader = file.read().split(",")
+            if uname.get() == reader[0] and password.get() == reader[1]:
+                Toplevel(sign_in_up_window)
+
+        except:
+            print("log.txt was deleted or You didn't sign up")
     sign_in_window = Tk()
     sign_in_window.title("Sign in")
     Label(sign_in_window, text="username : ").grid(row=0, column=0)
@@ -23,7 +30,9 @@ def sign_in():
 
 def sign_up():
     def check():
-        ...
+        file = open("log.txt","w")
+        file.write(uname.get()+","+password.get())
+
 
     sign_up_window = Tk()
     sign_up_window.title("Sign up")
