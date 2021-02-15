@@ -79,7 +79,7 @@ website_entry = Entry(root)
 website_entry.grid(row=3, column=1)
 
 Label(root, text="Password : ").grid(row=4,column=0)
-password_entry = Entry(root)
+password_entry = Entry(root, show="*")
 password_entry.grid(row=4, column=1)
 
 Button(root, text="               Save               " , command=save).grid(row=5, column=1)
@@ -95,7 +95,7 @@ update_website_entry = Entry(root)
 update_website_entry.grid(row=8, column=1)
 
 Label(root, text="Password  : ").grid(row=9, column=0)
-update_password_entry = Entry(root)
+update_password_entry = Entry(root, show="*")
 update_password_entry.grid(row=9, column=1)
 
 Button(root, text="             Update             ", command=update).grid(row=10, column=1)
