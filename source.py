@@ -3,7 +3,12 @@ from tkinter.ttk import Treeview
 from sqlite3 import connect
 
 def save():
-    ...
+    conn = connect('my_db.db')
+    c = conn.cursor()
+    c.execute("INSERT INTO PassList VALUES ('{}','{}')".format(website_entry.get(),password_entry.get()))
+    conn.commit()
+    conn.close()
+    show()
 
 def search():
     for i in tv.get_children():
