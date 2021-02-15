@@ -7,6 +7,8 @@ def save():
     c = conn.cursor()
     c.execute("INSERT INTO PassList VALUES ('{}','{}')".format(website_entry.get(),password_entry.get()))
     conn.commit()
+    website_entry.delete(0, 'end')
+    password_entry.delete(0, 'end')
     conn.close()
     show()
 
@@ -18,12 +20,15 @@ def search():
     c.execute("SELECT * FROM PassList WHERE website = '{}'".format(show_entry.get()))
     for row in c.fetchall():
         tv.insert("", "end", values=row)
+    show_entry.delete(0, 'end')
 
 def update():
     conn = connect("my_db.db")
     c = conn.cursor()
     c.execute("UPDATE PassList SET password = '{}' WHERE website = '{}'".format(update_password_entry.get(),update_website_entry.get()))
     conn.commit()
+    update_website_entry.delete(0, 'end')
+    update_password_entry.delete(0, 'end')
     conn.close()
     show()
 
