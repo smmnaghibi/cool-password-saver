@@ -2,11 +2,6 @@ from tkinter import Label, Entry, Button, Tk
 from tkinter.ttk import Treeview
 from sqlite3 import connect
 from random import choice
-
-from tkinter import Label, Entry, Button, Tk
-from tkinter.ttk import Treeview
-from sqlite3 import connect
-from random import choice
 import os.path
 
 def sign_in():
@@ -23,7 +18,9 @@ def sign_in():
                 Tk().bell()
 
         except:
-            print("log.txt was deleted or You didn't sign up")
+            sign_in_window.destroy()
+            sign_window()
+
     sign_in_window = Tk()
     sign_in_window.title("Sign in")
     Label(sign_in_window, text="username : ").grid(row=0, column=0)
